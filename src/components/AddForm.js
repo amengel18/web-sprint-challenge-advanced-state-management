@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addSmurfs, errorMessage } from '../actions';
 
 const AddForm = (props) => {
     const [state, setState] = useState({
@@ -9,7 +10,7 @@ const AddForm = (props) => {
     });
 
     //remove when error state is added
-    const errorMessage = "";
+    //const errorMessage = "";
 
     const handleChange = e => {
         setState({
@@ -22,6 +23,9 @@ const AddForm = (props) => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
             //add in error action
+            props.errorMessage("Name, position and nickname fields are required.");
+        }else{
+            props.addSmurfs(state)
         }
     }
 
@@ -47,7 +51,7 @@ const AddForm = (props) => {
             {
                 errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {errorMessage}</div>
             }
-            <button>Submit Smurf</button>
+            <button onClick={handleSubmit}>Submit Smurf</button>
         </form>
     </section>);
 }
