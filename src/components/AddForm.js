@@ -29,6 +29,8 @@ const AddForm = (props) => {
         }
     }
 
+    const errorMessage = state.errorMessage;
+    
     return(<section>
         <h2>Add Smurf</h2>
         <form onSubmit={handleSubmit}>
